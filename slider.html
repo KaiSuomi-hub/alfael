@@ -1,0 +1,79 @@
+<!DOCTYPE html>
+<html lang="en">
+<link rel="stylesheet" href="./slider_style.css">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+<body>
+
+
+<div class="grid-container" >
+
+<div class="grid-item">
+    <label for="usage">Asuntosi vuosikulutus</label><br>
+    <input id="usage" type="range" min="5000" max="40000" value="0" oninput="setUsage(this.value);" autocomplete="off">
+<br>
+
+
+
+<label for="panels">Paneleiden määrä</label><br>
+<input id="panels" type="range" min="8" max="34" value="0" oninput="setPanels(this.value);" autocomplete="off">
+<h4>Paneleiden kokonaispinta-ala</h4>
+<div id="ala"></div>
+</div>
+
+<div class="grid-item">
+<p id="teho" >Teho</p>
+<p id="tuotto">Vuosituotto</p>
+</div>
+
+
+<div class="grid-item" >
+<p>Valitse panelisi tehokkuus</p>
+
+<label for="280">280 watin aurinkopaneeli</label>
+<input type="radio" name="280" id="280" value="280"> 
+<br>
+<label for="310">310 watin aurinkopaneeli</label>
+<input type="radio" name="310" id="310" value="310" >
+
+</div>
+<div class="grid-item">
+    <button type="reset">reset</button>
+    </div>
+</div>
+
+<script>
+    // we put the usage in element for easier pickup
+    const tempElmt = document.querySelector("#teho");
+
+    // same as function setUsage(value) { .... }
+    const setPanel = value => {
+      // we push value received inside the usage results
+      tempElmt.firstElementChild.innerText = value;
+
+      // muutetaan laatikon väri if rakenteella
+      if (value < -60) {
+        tempElmt.style.backgroundColor = "#0000ff";
+      } else if (value < -40) {
+        tempElmt.style.backgroundColor = "#3333ff";
+      } else if (value < -20) {
+        tempElmt.style.backgroundColor = "#5555ff";
+      } else if (value < 0) {
+        tempElmt.style.backgroundColor = "#7777ff";
+      } else if (value < 20) {
+        tempElmt.style.backgroundColor = "#ff7777";
+      } else if (value < 40) {
+        tempElmt.style.backgroundColor = "#ff5555";
+      } else if (value < 60) {
+        tempElmt.style.backgroundColor = "#ff3333";
+      } else {
+        tempElmt.style.backgroundColor = "#ff0000";
+      }
+    };
+
+    setUsage(0); // when we load, let's give a value to the script
+  </script>
+
+</body>
