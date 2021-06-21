@@ -4,76 +4,160 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-
+<script
+  src="https://code.jquery.com/jquery-3.6.0.min.js"
+  integrity="sha256-/xUj+3OJU5yExlq6GSYGSHk7tPXikynS7ogEvDej/m4="
+  crossorigin="anonymous"></script>
 <body>
 
-
+<form action="">
 <div class="grid-container" >
 
 <div class="grid-item">
     <label for="usage">Asuntosi vuosikulutus</label><br>
-    <input id="usage" type="range" min="5000" max="40000" value="0" oninput="setUsage(this.value);" autocomplete="off">
+    <input id="usage" type="range" min="5000" max="40000" value="0" step="1000" name="usage" oninput="setUsage(this.value);" autocomplete="off">
+    <p> <span id="kwh"></span> kWh</p>
 <br>
 
 
 
-<label for="panels">Paneleiden määrä</label><br>
-<input id="panels" type="range" min="8" max="34" value="0" oninput="setPanels(this.value);" autocomplete="off">
-<h4>Paneleiden kokonaispinta-ala</h4>
-<div id="ala"></div>
+<label for="panels">Aurinkopaneeleiden määrä</label><br>
+<input id="panels" type="range" min="8" max="34" value="0" name="panels" step="2" oninput="setPanels(this.value);" autocomplete="off">
+<p><span id="kpl"></span> kappaletta</p>
+<h5>Paneeleiden kokonaispinta-ala</h5>
+<p><span id="ala"></span>&#13217;</p>
 </div>
 
 <div class="grid-item">
-<p id="teho" >Teho</p>
-<p id="tuotto">Vuosituotto</p>
+<p>Teho <span id="teho" ></span> kWp</p>
+<p >Vuosituotto <span id="tuotto" ></span> kWh</p>
 </div>
 
 
 <div class="grid-item" >
-<p>Valitse panelisi tehokkuus</p>
-
+<p>Valitse aurinkopaneelisi tehokkuus</p>
 <label for="280">280 watin aurinkopaneeli</label>
-<input type="radio" name="280" id="280" value="280"> 
+<input type="radio" name="power" id="280" value="280" checked="checked"> 
 <br>
 <label for="310">310 watin aurinkopaneeli</label>
-<input type="radio" name="310" id="310" value="310" >
+<input type="radio" name="power" id="310" value="310" >
 
 </div>
 <div class="grid-item">
-    <button type="reset">reset</button>
+    <button type="reset">Tyhjennä laskuri</button>
     </div>
 </div>
-
+</form>
 <script>
+
+
+
     // we put the usage in element for easier pickup
-    const tempElmt = document.querySelector("#teho");
+    // const tempElmt = document.querySelector("#teho");
 
     // same as function setUsage(value) { .... }
-    const setPanel = value => {
+    function setUsage(value){
       // we push value received inside the usage results
-      tempElmt.firstElementChild.innerText = value;
+      // tempElmt.firstElementChild.innerText = value;
+        // document.getElementById("teho").innerHTML = "Paragraph changed!";
 
-      // muutetaan laatikon väri if rakenteella
-      if (value < -60) {
-        tempElmt.style.backgroundColor = "#0000ff";
-      } else if (value < -40) {
-        tempElmt.style.backgroundColor = "#3333ff";
-      } else if (value < -20) {
-        tempElmt.style.backgroundColor = "#5555ff";
-      } else if (value < 0) {
-        tempElmt.style.backgroundColor = "#7777ff";
-      } else if (value < 20) {
-        tempElmt.style.backgroundColor = "#ff7777";
-      } else if (value < 40) {
-        tempElmt.style.backgroundColor = "#ff5555";
-      } else if (value < 60) {
-        tempElmt.style.backgroundColor = "#ff3333";
+      // onchange event tracking for updating usage visibility
+      document.getElementById("kwh").innerHTML = value;
+
+
+      // let's change the value in the usage div
+      if (value < 11000) {
+        document.getElementById("kpl").innerHTML = "8";
+        document.querySelector('input[id=panels]').value = 8;
+      } else if (value < 14000) {
+        document.getElementById("kpl").innerHTML = "10";
+        document.querySelector('input[id=panels]').value = 10;
+      } 
+      else if (value < 16000) {
+        document.getElementById("kpl").innerHTML = "12";
+        document.querySelector('input[id=panels]').value = 12;
+      } else if (value < 18000) {
+        document.getElementById("kpl").innerHTML = "14";
+        document.querySelector('input[id=panels]').value = 14;        
+      } else if (value < 21000 ) {
+        document.getElementById("kpl").innerHTML = "16";
+        document.querySelector('input[id=panels]').value = 16;
+      } else if (value < 23000) {
+        document.getElementById("kpl").innerHTML = "18";
+        document.querySelector('input[id=panels]').value = 18;
+      } else if (value < 25000) {
+        document.getElementById("kpl").innerHTML = "20";
+        document.querySelector('input[id=panels]').value = 20;
+      } else if (value < 28000) {
+        document.getElementById("kpl").innerHTML = "22";
+        document.querySelector('input[id=panels]').value = 22;
+      } else if (value < 30000) {
+        document.getElementById("kpl").innerHTML = "24";
+        document.querySelector('input[id=panels]').value = 24;
+      } else if (value < 33000) {
+        document.getElementById("kpl").innerHTML = "26";
+        document.querySelector('input[id=panels]').value = 26;
+      } else if (value < 35000) {
+        document.getElementById("kpl").innerHTML = "28";
+        document.querySelector('input[id=panels]').value = 28;
+      } else if (value < 37000) {
+        document.getElementById("kpl").innerHTML = "30";
+        document.querySelector('input[id=panels]').value = 30;
+      } else if (value < 39000) {
+        document.getElementById("kpl").innerHTML = "32";
+        document.querySelector('input[id=panels]').value = 32;
       } else {
-        tempElmt.style.backgroundColor = "#ff0000";
+        document.getElementById("kpl").innerHTML = "34";
+        document.querySelector('input[id=panels]').value = 34;
       }
-    };
+};
 
-    setUsage(0); // when we load, let's give a value to the script
+
+
+function setPanels(value2){
+  document.getElementById("kpl").innerHTML = value2;
+  watts = $("input[type='radio'][name='power']:checked").val();
+  var kwp = value2 * watts
+  document.getElementById("teho").innerHTML = kwp;
+  var kwha = kwp * 0.85;
+  document.getElementById("tuotto").innerHTML = kwha;
+  
+  // let's slap in the area taken by panels
+
+  if (value2 == 8 ) {
+    document.getElementById("ala").innerHTML = "14";
+      } else if (value2 == 10) {
+    document.getElementById("ala").innerHTML = "17";
+    }  else if (value2 == 12) {
+    document.getElementById("ala").innerHTML = "20";
+    }  else if (value2 == 14) {
+    document.getElementById("ala").innerHTML = "23";
+    } else if (value2 == 16) {
+    document.getElementById("ala").innerHTML = "27";
+    } else if (value2 == 18) {
+      document.getElementById("ala").innerHTML = "30";
+    } else if (value2 == 20) {
+      document.getElementById("ala").innerHTML = "33";
+    } else if (value2 == 22) {
+      document.getElementById("ala").innerHTML = "36";
+    } else if (value2 == 24) {
+      document.getElementById("ala").innerHTML = "40";
+    } else if (value2 == 26) {
+      document.getElementById("ala").innerHTML = "43";
+    } else if (value2 == 28) {
+      document.getElementById("ala").innerHTML = "46";
+    } else if (value2 == 30) {
+      document.getElementById("ala").innerHTML = "49";
+    } else if (value2 == 32) {
+      document.getElementById("ala").innerHTML = "53";
+    } else {
+      document.getElementById("ala").innerHTML = "56";
+    }
+  }
+ // when we load, let's give a value to the script
+setUsage(5000);
+setPanels(8);
+
   </script>
 
 </body>
