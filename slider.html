@@ -1,6 +1,6 @@
 <style>
 @import "/wp-content/themes/hello-elementor/slider_style.css";
-/* @import "slider_style.css"; */
+@import "slider_style.css";
 </style>
 
 <script
@@ -21,7 +21,7 @@
 
 
 <label for="panels">Aurinkopaneeleiden määrä</label><br>
-<input id="panels" type="range" min="8" max="34" value="8" step="2" oninput="setPanels(this.value);" autocomplete="off">
+<input id="panels" type="range" min="8" max="34" value="8" step="2" name="panels" oninput="setPanels(this.value);" autocomplete="off">
 <p><span id="kpl"></span> kappaletta</p>
 <h5>Paneeleiden kokonaispinta-ala</h5>
 <p><span id="ala"></span>&#13217;</p>
@@ -65,50 +65,70 @@
 
       // onchange event tracking for updating usage visibility
       document.getElementById("kwh").innerHTML = value;
-
-
+      var value2=document.getElementById("kpl").innerHTML;
+      watts = $("input[type='radio'][name='power']:checked").val();
+      var kwp = value2 * watts
+      document.getElementById("teho").innerHTML = kwp;
+      var kwha = kwp * 0.85;
+      document.getElementById("tuotto").innerHTML = kwha;
+  
+      
       // let's change the value in the usage div
       if (value < 11000) {
+        document.getElementById("ala").innerHTML = "14";
         document.getElementById("kpl").innerHTML = "8";
         document.querySelector('input[id=panels]').value = 8;
       } else if (value < 14000) {
+        document.getElementById("ala").innerHTML = "17";
         document.getElementById("kpl").innerHTML = "10";
         document.querySelector('input[id=panels]').value = 10;
       } 
       else if (value < 16000) {
+        document.getElementById("ala").innerHTML = "20";
         document.getElementById("kpl").innerHTML = "12";
         document.querySelector('input[id=panels]').value = 12;
       } else if (value < 18000) {
+        document.getElementById("ala").innerHTML = "23";
         document.getElementById("kpl").innerHTML = "14";
         document.querySelector('input[id=panels]').value = 14;        
       } else if (value < 21000 ) {
+        document.getElementById("ala").innerHTML = "27";
         document.getElementById("kpl").innerHTML = "16";
         document.querySelector('input[id=panels]').value = 16;
       } else if (value < 23000) {
+        document.getElementById("ala").innerHTML = "30";
         document.getElementById("kpl").innerHTML = "18";
         document.querySelector('input[id=panels]').value = 18;
       } else if (value < 25000) {
+        document.getElementById("ala").innerHTML = "33";
         document.getElementById("kpl").innerHTML = "20";
         document.querySelector('input[id=panels]').value = 20;
       } else if (value < 28000) {
+        document.getElementById("ala").innerHTML = "36";
         document.getElementById("kpl").innerHTML = "22";
         document.querySelector('input[id=panels]').value = 22;
       } else if (value < 30000) {
+        document.getElementById("ala").innerHTML = "40";
         document.getElementById("kpl").innerHTML = "24";
         document.querySelector('input[id=panels]').value = 24;
       } else if (value < 33000) {
+        document.getElementById("ala").innerHTML = "43";
         document.getElementById("kpl").innerHTML = "26";
         document.querySelector('input[id=panels]').value = 26;
       } else if (value < 35000) {
+        document.getElementById("ala").innerHTML = "46";
         document.getElementById("kpl").innerHTML = "28";
         document.querySelector('input[id=panels]').value = 28;
       } else if (value < 37000) {
+        document.getElementById("ala").innerHTML = "49";
         document.getElementById("kpl").innerHTML = "30";
         document.querySelector('input[id=panels]').value = 30;
       } else if (value < 39000) {
+        document.getElementById("ala").innerHTML = "53";
         document.getElementById("kpl").innerHTML = "32";
         document.querySelector('input[id=panels]').value = 32;
       } else {
+        document.getElementById("ala").innerHTML = "56";
         document.getElementById("kpl").innerHTML = "34";
         document.querySelector('input[id=panels]').value = 34;
       }
