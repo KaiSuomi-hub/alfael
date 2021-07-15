@@ -1,0 +1,186 @@
+<style>
+    @import "/wp-content/themes/hello-elementor/slider_style.css";
+    /* @import "slider_style.css"; */
+    </style>
+    
+    <script
+      src="https://code.jquery.com/jquery-3.6.0.min.js"
+      integrity="sha256-/xUj+3OJU5yExlq6GSYGSHk7tPXikynS7ogEvDej/m4="
+      crossorigin="anonymous">
+    </script>
+    
+    <form action="">
+    <div class="grid-container" >
+    
+    <div class="grid-item">
+        <label for="usage">Votre consommation énergétique annuelle</label><br>
+        <input id="usage" type="range" min="5000" max="40000" value="5000" step="1000" name="usage" oninput="setUsage(this.value);" autocomplete="off">
+        <p> <span id="kwh"></span> kWh</p>
+    <br>
+    
+    
+    
+    <label for="panels">Quantité de panneaux solaires</label><br>
+    <input id="panels" type="range" min="8" max="34" value="8" step="2" oninput="setPanels(this.value);" autocomplete="off">
+    <p><span id="kpl"></span> pièces</p>
+    <h5>Surface totale des panneaux solaires</h5>
+    <p><span id="ala"></span>&#13217;</p>
+    </div>
+    
+    <div class="grid-item">
+    <p class="results">Puissance de sortie maximale <span id="teho" ></span> kWp</p>
+    <div><br></div>
+    <p class="results">
+        Estimation de la puissance générée par an <span id="tuotto" ></span> kWh</p>
+    </div>
+    
+    
+    <div  class="grid-item" >
+    <p>
+        Puissance du panneau solaire</p>
+    <label for="280">
+      
+      <span class="radio__input">
+    <input type="radio" name="power" id="280" value="280" checked="checked" >
+    <span class="radio__control"></span><span class="radio__label">Panneau de 280 watts</span>
+      </span>
+    </label>
+    <br>
+    <label for="310">
+      
+      <span class="radio__input">
+    <input type="radio" name="power" id="310" value="310" >
+    <span class="radio__control"></span> <span class="radio__label">Panneau de 310 watts</span>
+      </span>
+    </label>
+    </div>
+    <div id="nappi" class="grid-item">
+        <button id="clear" type="reset">Réinitialiser</button>
+        </div>
+    </div>
+    </form>
+    <script>
+        function setUsage(value){
+          // we push value received inside the usage results
+          // tempElmt.firstElementChild.innerText = value;
+            // document.getElementById("teho").innerHTML = "Paragraph changed!";
+    
+          // onchange event tracking for updating usage visibility
+          document.getElementById("kwh").innerHTML = value;
+      var value2=document.getElementById("kpl").innerHTML;
+      watts = $("input[type='radio'][name='power']:checked").val();
+      var kwp = value2 * watts
+      document.getElementById("teho").innerHTML = kwp;
+      var kwha = kwp * 0.85;
+      document.getElementById("tuotto").innerHTML = kwha;
+  
+      
+      // let's change the value in the usage div
+      if (value < 11000) {
+        document.getElementById("ala").innerHTML = "14";
+        document.getElementById("kpl").innerHTML = "8";
+        document.querySelector('input[id=panels]').value = 8;
+      } else if (value < 14000) {
+        document.getElementById("ala").innerHTML = "17";
+        document.getElementById("kpl").innerHTML = "10";
+        document.querySelector('input[id=panels]').value = 10;
+      } 
+      else if (value < 16000) {
+        document.getElementById("ala").innerHTML = "20";
+        document.getElementById("kpl").innerHTML = "12";
+        document.querySelector('input[id=panels]').value = 12;
+      } else if (value < 18000) {
+        document.getElementById("ala").innerHTML = "23";
+        document.getElementById("kpl").innerHTML = "14";
+        document.querySelector('input[id=panels]').value = 14;        
+      } else if (value < 21000 ) {
+        document.getElementById("ala").innerHTML = "27";
+        document.getElementById("kpl").innerHTML = "16";
+        document.querySelector('input[id=panels]').value = 16;
+      } else if (value < 23000) {
+        document.getElementById("ala").innerHTML = "30";
+        document.getElementById("kpl").innerHTML = "18";
+        document.querySelector('input[id=panels]').value = 18;
+      } else if (value < 25000) {
+        document.getElementById("ala").innerHTML = "33";
+        document.getElementById("kpl").innerHTML = "20";
+        document.querySelector('input[id=panels]').value = 20;
+      } else if (value < 28000) {
+        document.getElementById("ala").innerHTML = "36";
+        document.getElementById("kpl").innerHTML = "22";
+        document.querySelector('input[id=panels]').value = 22;
+      } else if (value < 30000) {
+        document.getElementById("ala").innerHTML = "40";
+        document.getElementById("kpl").innerHTML = "24";
+        document.querySelector('input[id=panels]').value = 24;
+      } else if (value < 33000) {
+        document.getElementById("ala").innerHTML = "43";
+        document.getElementById("kpl").innerHTML = "26";
+        document.querySelector('input[id=panels]').value = 26;
+      } else if (value < 35000) {
+        document.getElementById("ala").innerHTML = "46";
+        document.getElementById("kpl").innerHTML = "28";
+        document.querySelector('input[id=panels]').value = 28;
+      } else if (value < 37000) {
+        document.getElementById("ala").innerHTML = "49";
+        document.getElementById("kpl").innerHTML = "30";
+        document.querySelector('input[id=panels]').value = 30;
+      } else if (value < 39000) {
+        document.getElementById("ala").innerHTML = "53";
+        document.getElementById("kpl").innerHTML = "32";
+        document.querySelector('input[id=panels]').value = 32;
+      } else {
+        document.getElementById("ala").innerHTML = "56";
+        document.getElementById("kpl").innerHTML = "34";
+        document.querySelector('input[id=panels]').value = 34;
+      }
+  };
+    
+    
+    
+    function setPanels(value2){
+      document.getElementById("kpl").innerHTML = value2;
+      watts = $("input[type='radio'][name='power']:checked").val();
+      var kwp = value2 * watts
+      document.getElementById("teho").innerHTML = kwp;
+      var kwha = kwp * 0.85;
+      document.getElementById("tuotto").innerHTML = kwha;
+      
+      // let's slap in the area taken by panels
+    
+      if (value2 == 8 ) {
+        document.getElementById("ala").innerHTML = "14";
+          } else if (value2 == 10) {
+        document.getElementById("ala").innerHTML = "17";
+        }  else if (value2 == 12) {
+        document.getElementById("ala").innerHTML = "20";
+        }  else if (value2 == 14) {
+        document.getElementById("ala").innerHTML = "23";
+        } else if (value2 == 16) {
+        document.getElementById("ala").innerHTML = "27";
+        } else if (value2 == 18) {
+          document.getElementById("ala").innerHTML = "30";
+        } else if (value2 == 20) {
+          document.getElementById("ala").innerHTML = "33";
+        } else if (value2 == 22) {
+          document.getElementById("ala").innerHTML = "36";
+        } else if (value2 == 24) {
+          document.getElementById("ala").innerHTML = "40";
+        } else if (value2 == 26) {
+          document.getElementById("ala").innerHTML = "43";
+        } else if (value2 == 28) {
+          document.getElementById("ala").innerHTML = "46";
+        } else if (value2 == 30) {
+          document.getElementById("ala").innerHTML = "49";
+        } else if (value2 == 32) {
+          document.getElementById("ala").innerHTML = "53";
+        } else {
+          document.getElementById("ala").innerHTML = "56";
+        }
+      }
+     // when we load, let's give a value to the script
+    setUsage(5000);
+    setPanels(8);
+    
+      </script>
+    
