@@ -6,17 +6,31 @@
   font-weight: bold;
 }
 
+
 .grid-container {
   display: grid;
   grid-template-columns: auto auto;
-  
 }
+/*mobile stack*/
 @media screen and (max-width: 768px) {
   .grid-container {
       grid-template-columns: 1fr;
       grid-template-rows: 1fr;
+      width: 75%!important;
+      padding-left: 25%;
    }
+   .results{
+    padding: 0%!important;
+   }
+}
+
+@media screen and (max-width: 768px) {
+ .results {
+  width:90% !important;
   }
+}
+
+
 /* lets do the radio buttons */
 .radio__input 
   input {
@@ -72,11 +86,19 @@ input:checked + .radio__control {
   position:relative;
   left: 25%;
   top: 25%;
+}
+/*mobile paaddingg*/
+@media screen and (max-width: 768px) {
+#nappi{
+  position:relative;
+  left: 8%;
+  top: 40;
+ 
+}
 
 }
 
 #clear { 
-
   background-color: white;
   padding: 12px 41px 12px 41;
   border-radius: 5px;
@@ -224,9 +246,6 @@ input:checked + .radio__control {
   transform: scale(1.1);
   transition: 0.3s;
 }
-
-
-
 
 [type=range]:disabled::-webkit-slider-thumb, [type=range]:disabled::-moz-range-thumb, [type=range]:disabled::-ms-thumb, [type=range]:disabled::-webkit-slider-runnable-track, [type=range]:disabled::-ms-fill-lower, [type=range]:disabled::-ms-fill-upper {
   cursor: not-allowed;
